@@ -11,14 +11,19 @@ class Receipt extends Model {
 	use SoftDeletes;
 	protected $table = 'receipts';
 	protected $fillable = [
-		'code',
-		'name',
-		'cust_group',
-		'dimension',
-		'mobile_no',
-		'email',
+		'permanent_receipt_no',
 		'company_id',
+		'outlet_id',
+		'sbu_id',
 	];
+
+	public function outlet() {
+		return $this->belongsTo('App\Outlet');
+	}
+
+	public function sbu() {
+		return $this->belongsTo('App\Sbu');
+	}
 
 	public static function createFromObject($record_data) {
 
